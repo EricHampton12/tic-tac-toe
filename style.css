@@ -1,0 +1,40 @@
+#app {
+    display: inline-block;
+    margin: auto;
+    margin-left: 30px;
+}
+
+button {
+    margin-left: 30px;
+    position: relative;
+    size: 40px;
+}
+
+
+#Turn {
+    margin-top: 10px;
+}
+
+.div {
+    margin-top: 10px;
+    font-size: 30px;
+}
+
+body {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    margin: auto;   
+    margin-left: 100px;
+    margin-top: 3px;
+    background-color: rgb(36, 240, 162);
+}
+
+.col {
+    width: 100px;
+    height: 100px;
+}
