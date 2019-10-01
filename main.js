@@ -1,3 +1,7 @@
+//global variable
+//number of clicks
+var Counter = 0;
+var gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var app = document.getElementById('app');
 
 function render_the_page() {
@@ -17,10 +21,9 @@ function render_the_page() {
         if (i % 3 == 0) {
             // create a row
             myRow = document.createElement('div')
-            myRow.setAttribute('class', 'row');
+            myRow.setAttribute('class', 'row bg-light');
             // update placeholder
         }
-        //create a column
         var myCol = document.createElement('div');
         myCol.setAttribute('class', 'col-4 px-3 py-3 text-center border border-dark');
         //        add a button to the column
@@ -28,17 +31,14 @@ function render_the_page() {
         btn.innerHTML = ' ';
         btn.id = i;
         btn.addEventListener('click', whos_turn);
-        btn.setAttribute('class', 'btn-lg btn-primary')
+        btn.setAttribute('class', 'btn-lg btn-primary btn-tile')
         myCol.appendChild(btn);
         myRow.appendChild(myCol);
 
-        //        add a click handler to the button
-        //        add an id tag to the button
-        //add new column to existing row
+
         if (i == 2 || i == 5 || i == 8) {
             myContainer.appendChild(myRow);
         }
-        // if i  == 2, 5, or  8  then add row to container
     }
     // add container to the div that had the id='app'
     app.appendChild(myContainer);
@@ -55,10 +55,6 @@ function render_the_page() {
     app.appendChild(h1);
 }
 
-//global variable
-//number of clicks
-var Counter = 0;
-var gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function whos_turn() {
     console.log(this);
@@ -81,7 +77,8 @@ function whos_turn() {
         }
         Counter++;
         checkWin();
-        
+        this.removeEventListener('click', whos_turn);
+
     }
 
 
@@ -92,6 +89,7 @@ function whos_turn() {
 }
 
 function checkWin() {
+    // console.log(this);
     var options = [
         [0, 1, 2],
         [3, 4, 5],
@@ -104,33 +102,46 @@ function checkWin() {
     // console.log(options);
 
 
-        var finishedGame = false;
+    var finishedGame = false;
 
     for (var i in options) {
-        console.log(options[i]);
+        // console.log({Counter})
+        // console.log(options[i]);
         if (gridArray[options[i][0]] != 0 && gridArray[options[i][1]] != 0 && gridArray[options[i][2]] != 0) {
 
             if (gridArray[options[i][0]] + gridArray[options[i][1]] + gridArray[options[i][2]] == 3) {
                 Turn.innerHTML = "X is the winner";
+                finishedGame = true;
+                // this.removeEventListener('click',whos_turn);
             } else if (gridArray[options[i][0]] + gridArray[options[i][1]] + gridArray[options[i][2]] == 6) {
-
                 Turn.innerHTML = "O is the winner";
+                finishedGame = true;
+
+            } else if (Counter == 9 && finishedGame == false) {
+                Turn.innerHTML = "It's a tie!";
+                finishedGame = true;
             }
         }
     }
-    if(Counter == 9 && gridArray != 0){
-        Turn.innerHTML = "It's a tie!";
+
+    if (finishedGame) {
+        for (var i = 0; i < 9; i++) {
+            document.getElementById(i).removeEventListener('click', whos_turn)
+        }
     }
 }
-
+function end_game() { console.log('finished game') }
 
 function reset() {
-
+    app.innerHTML = "";
+    gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    Counter = 0;
+    init();
 }
 
 
 
 function init() {
-    console.log('init');
+    // console.log('init');
     render_the_page();
 }
