@@ -3,12 +3,12 @@ var app = document.getElementById('app');
 function render_the_page() {
     // find the app element
     //put h2 in app
-    var h2 = document.createElement('div');
-    h2.innerHTML = 'Tic Tac Toe';
-    app.appendChild(h2);
+    var title = document.createElement('div');
+    title.innerHTML = 'Tic Tac Toe';
+    app.appendChild(title);
     // create a container div
     var myContainer = document.createElement('div');
-    myContainer.setAttribute('class', 'container');
+    myContainer.setAttribute('class', 'container-fluid display-5 bg-dark');
     //placeholder variable for row
     var myRow = ''
     for (var i = 0; i < 9; i++) {
@@ -22,12 +22,13 @@ function render_the_page() {
         }
         //create a column
         var myCol = document.createElement('div');
-        myCol.setAttribute('class', 'col');
+        myCol.setAttribute('class', 'col-4 px-3 py-3 text-center border border-dark');
         //        add a button to the column
         var btn = document.createElement('button');
-        btn.innerHTML = 'button';
+        btn.innerHTML = ' ';
         btn.id = i;
         btn.addEventListener('click', whos_turn);
+        btn.setAttribute('class', 'btn-lg btn-primary')
         myCol.appendChild(btn);
         myRow.appendChild(myCol);
 
@@ -44,6 +45,8 @@ function render_the_page() {
     //put button in app
     var resetButton = document.createElement('button');
     resetButton.innerHTML = "Reset";
+    resetButton.addEventListener('click', reset);
+    resetButton.setAttribute('class', 'btn-primary')
     app.appendChild(resetButton);
 
     var h1 = document.createElement('div');
@@ -78,19 +81,10 @@ function whos_turn() {
         }
         Counter++;
         checkWin();
+        
     }
 
 
-
-
-    // if its x's turn (even) say x's turn
-    // if(i % 2) {
-
-    // }
-    // else (odd) say o's turn
-
-
-    //update the number of clicks
 
     /* step two */
     // make sure you can only click on button once
@@ -131,8 +125,7 @@ function checkWin() {
 
 
 function reset() {
-    Counter = [0,0,0,0,0,0,0,0];
-    resetButton.innerHTML(render_the_page);
+
 }
 
 

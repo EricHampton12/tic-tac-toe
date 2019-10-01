@@ -1,40 +1,24 @@
-#app {
-    display: inline-block;
+.container {
+    height: 80px;
+    width: 100px;
     margin: auto;
-    margin-left: 30px;
 }
 
-button {
-    margin-left: 30px;
-    position: relative;
+#app {
+    margin: auto;
+    padding: 2px;
+}
+
+#button {
     size: 40px;
 }
 
-
-#Turn {
+.btn-primary{
     margin-top: 10px;
 }
 
 .div {
-    margin-top: 10px;
-    font-size: 30px;
-}
-
-body {
-    margin: 0;
-    display: inline-block;
-    position: relative;
-}
-
-.container {
-    position: relative;
-    margin: auto;   
-    margin-left: 100px;
-    margin-top: 3px;
-    background-color: rgb(36, 240, 162);
-}
-
-.col {
-    width: 100px;
-    height: 100px;
+    text-align: center;
+    font-size: 40px;
+    margin: auto;
 }
